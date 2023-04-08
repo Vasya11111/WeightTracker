@@ -7,11 +7,19 @@
     tools:context=".ui.notifications.NotificationsFragment">
 
 
-
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="400dip"
+   <!-- <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
-        tools:ignore="MissingConstraints" />
+        android:layout_width="406dp"
+        android:layout_height="81dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="6dp" />-->
 
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="394dp"
+        android:layout_height="395dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
