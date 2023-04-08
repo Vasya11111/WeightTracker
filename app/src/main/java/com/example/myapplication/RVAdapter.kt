@@ -6,21 +6,22 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.ui.dashboard.Person
 
-class RVAdapter  constructor(var persons: MutableList<Person>) :
+
+
+class RVAdapter  constructor(var persons: MutableList<Measure>) :
     RecyclerView.Adapter<RVAdapter.PersonViewHolder>() {
     class PersonViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         var cv: CardView
-        var personName: TextView
-        var personAge: TextView
+        var measureDate: TextView
+        var measureVal: TextView
 
 
         init {
             cv = itemView.findViewById<View>(R.id.cv) as CardView
-            personName = itemView.findViewById<View>(R.id.person_name) as TextView
-            personAge = itemView.findViewById<View>(R.id.person_age) as TextView
+            measureDate = itemView.findViewById<View>(R.id.measure_date) as TextView
+            measureVal = itemView.findViewById<View>(R.id.measure_val) as TextView
 
         }
     }
@@ -31,13 +32,13 @@ class RVAdapter  constructor(var persons: MutableList<Person>) :
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): PersonViewHolder {
         val v: View =
-            LayoutInflater.from(viewGroup.context).inflate(R.layout.tems, viewGroup, false)
+            LayoutInflater.from(viewGroup.context).inflate(R.layout.items, viewGroup, false)
         return PersonViewHolder(v)
     }
 
     override fun onBindViewHolder(personViewHolder: PersonViewHolder, i: Int) {
-        personViewHolder.personName.text = persons[i].name
-        personViewHolder.personAge.text = persons[i].age
+        personViewHolder.measureDate.text = persons[i].dateDisplay()
+        personViewHolder.measureVal.text = persons[i].weightDisplay()
 
     }
 

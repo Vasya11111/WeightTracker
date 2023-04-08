@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".ui.history.HistoryFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
 
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

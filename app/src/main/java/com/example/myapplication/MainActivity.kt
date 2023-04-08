@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_history, R.id.navigation_graph
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         if(arguments!=null) {
             val navController = findNavController(R.id.nav_host_fragment_activity_main)
             val graph = navController.navInflater.inflate(R.navigation.mobile_navigation)
-            graph.setStartDestination(R.id.navigation_dashboard);
+            graph.setStartDestination(R.id.navigation_history);
             navController.setGraph(graph,null)
 
         }
