@@ -19,7 +19,7 @@
         android:background="@drawable/btn_rounded_corner"
 
 
-        android:onClick="onClick"
+        android:onClick="addTodayMeasure"
         android:text="Сохранить"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

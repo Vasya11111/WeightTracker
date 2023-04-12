@@ -96,8 +96,6 @@ class HistoryFragment : Fragment() {
         allpoints=allpoints.reversed()
         for (i in allpoints){
             persons?.add(i)
-          //  var dateString = dateFormatter.format(i.date)
-          //  persons?.add(Person(dateString+" г.", i.weight.toString()+" КГ"))
         }
 
 

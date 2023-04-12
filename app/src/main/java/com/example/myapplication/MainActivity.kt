@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun onClick(view: View?) {
+    fun addTodayMeasure(view: View?) {
 
 
         val db = baseContext.openOrCreateDatabase("app.db", MODE_PRIVATE, null)
@@ -103,8 +103,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
 
 
-       // query.close()
-        //db.close()
     }
 
 
@@ -117,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
     fun showButton(view: View?){
 
-       val button=view?.findViewById<Button>(R.id.button2)
+       val button=view?.findViewById<Button>(R.id.buttonDelete)
         button?.visibility=VISIBLE
 
     }
@@ -128,8 +126,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val viewGroup = view?.parent as ViewGroup
-        val child:TextView = viewGroup.getChildAt(0) as TextView
+        val viewRelative = view?.parent as ViewGroup
+        val child:TextView = viewRelative.getChildAt(0) as TextView
         var text:String = child.text.toString()
         text=text.substring(0,text.length-3)
 
@@ -145,10 +143,10 @@ class MainActivity : AppCompatActivity() {
 
         datab.deleteDate(currentDate)
 
-        var viewGroup2 = viewGroup?.parent as ViewGroup
-        val viewGroup3 = viewGroup2?.parent as ViewGroup
-        viewGroup3.setPadding(0,0,0,0)
-        viewGroup2.visibility=GONE
+        var viewCard = viewRelative?.parent as ViewGroup
+        val viewLinear = viewCard?.parent as ViewGroup
+        viewLinear.setPadding(0,0,0,0)
+        viewCard.visibility=GONE
 
 
     }

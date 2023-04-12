@@ -140,7 +140,7 @@ for(i in allpoints){
 
         val ll1 = LimitLine(80f, "Upper Limit")
         ll1.lineWidth = 4f
-        ll1.enableDashedLine(10f, 10f, 0f)
+     //   ll1.enableDashedLine(10f, 10f, 0f)
         ll1.labelPosition = LimitLabelPosition.RIGHT_TOP
         ll1.textSize = 10f
         ll1.lineColor=R.color.red
@@ -149,7 +149,7 @@ for(i in allpoints){
 
         val ll2 = LimitLine(85f, "Upper Limit")
         ll2.lineWidth = 4f
-        ll2.enableDashedLine(10f, 10f, 0f)
+      //  ll2.enableDashedLine(10f, 10f, 0f)
         ll2.labelPosition = LimitLabelPosition.RIGHT_TOP
         ll2.textSize = 10f
 
@@ -159,7 +159,15 @@ for(i in allpoints){
         yAxis.addLimitLine(ll2)
 
 
+        val ll3 = LimitLine(allpoints[3].date.time.toFloat(), "Upper Limit")
+        ll3.lineWidth = 2f
+        ll3.enableDashedLine(10f, 10f, 0f)
+        ll3.labelPosition = LimitLabelPosition.RIGHT_TOP
+        ll3.textSize = 10f
 
+
+
+        xAxis.addLimitLine(ll3)
 
         chart.invalidate() // refresh
 
