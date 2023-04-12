@@ -16,5 +16,8 @@
         android:icon="@drawable/insights_48px"
         android:title="@string/title_graph" />
 
-
+    <item
+        android:id="@+id/navigation_notes"
+        android:icon="@drawable/insights_48px"
+        android:title="@string/title_notes" />
 </menu>

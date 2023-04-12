@@ -3,6 +3,7 @@
     <string name="title_home">Ввод</string>
     <string name="title_history">История</string>
     <string name="title_graph">График</string>
+    <string name="title_notes">Заметки</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

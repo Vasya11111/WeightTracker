@@ -12,11 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.Database
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentGraphBinding
-import com.example.myapplication.ui.notifications.GraphViewModel
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.LimitLine
@@ -52,8 +50,6 @@ class GraphFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val graphViewModel =
-            ViewModelProvider(this).get(GraphViewModel::class.java)
 
         _binding = FragmentGraphBinding.inflate(inflater, container, false)
         val root: View = binding.root
