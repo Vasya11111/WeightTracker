@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 
-class RVAdapter  constructor(var persons: MutableList<Measure>) :
+class RVAdapter  constructor(var measures: MutableList<Measure>) :
     RecyclerView.Adapter<RVAdapter.PersonViewHolder>() {
     class PersonViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -37,12 +37,12 @@ class RVAdapter  constructor(var persons: MutableList<Measure>) :
     }
 
     override fun onBindViewHolder(personViewHolder: PersonViewHolder, i: Int) {
-        personViewHolder.measureDate.text = persons[i].dateDisplay()
-        personViewHolder.measureVal.text = persons[i].weightDisplay()
+        personViewHolder.measureDate.text = measures[i].dateDisplay()
+        personViewHolder.measureVal.text = measures[i].weightDisplay()
 
     }
 
     override fun getItemCount(): Int {
-        return persons.size
+        return measures.size
     }
 }

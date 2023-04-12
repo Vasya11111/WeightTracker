@@ -18,6 +18,6 @@
 
     <item
         android:id="@+id/navigation_notes"
-        android:icon="@drawable/insights_48px"
+        android:icon="@drawable/notes_48px"
         android:title="@string/title_notes" />
 </menu>

@@ -25,6 +25,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.utils.ColorTemplate
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import java.text.SimpleDateFormat
@@ -134,36 +135,29 @@ for(i in allpoints){
         chart.data = lineData
 
 
-        val ll1 = LimitLine(80f, "Upper Limit")
-        ll1.lineWidth = 4f
-     //   ll1.enableDashedLine(10f, 10f, 0f)
-        ll1.labelPosition = LimitLabelPosition.RIGHT_TOP
-        ll1.textSize = 10f
-        ll1.lineColor=R.color.red
 
-
-
-        val ll2 = LimitLine(85f, "Upper Limit")
-        ll2.lineWidth = 4f
-      //  ll2.enableDashedLine(10f, 10f, 0f)
-        ll2.labelPosition = LimitLabelPosition.RIGHT_TOP
-        ll2.textSize = 10f
 
 
         val yAxis: YAxis = chart.getAxis(YAxis.AxisDependency.LEFT)
-        yAxis.addLimitLine(ll1)
-        yAxis.addLimitLine(ll2)
-
-
-        val ll3 = LimitLine(allpoints[3].date.time.toFloat(), "Upper Limit")
-        ll3.lineWidth = 2f
-        ll3.enableDashedLine(10f, 10f, 0f)
-        ll3.labelPosition = LimitLabelPosition.RIGHT_TOP
-        ll3.textSize = 10f
 
 
 
-        xAxis.addLimitLine(ll3)
+
+
+
+        val allgoals= datab.getGoals(context)
+        var k:Int=0
+        for(i in allgoals){
+            var limLine = LimitLine(i.weight.toFloat(), i.note)
+            limLine.lineWidth = 3f
+            limLine.enableDashedLine(10f, 10f, 0f)
+            limLine.labelPosition = LimitLabelPosition.RIGHT_TOP
+            limLine.textSize = 10f
+            limLine.lineColor= ColorTemplate.VORDIPLOM_COLORS[2*(k%3)]
+            k=k+1
+            yAxis.addLimitLine(limLine)
+        }
+
 
         chart.invalidate() // refresh
 

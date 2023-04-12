@@ -13,19 +13,29 @@ import java.util.*
 class Database constructor(_db: SQLiteDatabase?)  {
 
     val db: SQLiteDatabase? = _db
+    val dateFormatter = SimpleDateFormat("dd.MM.yyyy")
 
-    fun createDB (context: Context?,name:String){
+    fun createTables (context: Context?){
 
-       //db?.execSQL("DROP TABLE IF EXISTS "+name)
-        db?.execSQL("CREATE TABLE IF NOT EXISTS "+name+" (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT UNIQUE, weight INTEGER)")
+
+       // db?.execSQL("DROP TABLE goals;")
+        db?.execSQL("CREATE TABLE IF NOT EXISTS measures (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT UNIQUE, weight INTEGER)")
+        db?.execSQL("CREATE TABLE IF NOT EXISTS goals (id INTEGER PRIMARY KEY AUTOINCREMENT, weight INTEGER UNIQUE, note TEXT)")
 
     }
 
     fun insertData(currentDate: Calendar, y: Int) {
-        val dateFormatter = SimpleDateFormat("dd.MM.yyyy")
+
         val dateString = dateFormatter.format(currentDate.time)
 
         val sqlstring = "INSERT OR REPLACE INTO measures (date,weight) VALUES ('"+dateString+"',"+y+");"
+
+        db?.execSQL(sqlstring)
+    }
+    fun insertGoal(weight: Int, y: String) {
+
+
+        val sqlstring = "INSERT OR REPLACE INTO goals (weight,note) VALUES ('"+weight+"','"+y+"');"
 
         db?.execSQL(sqlstring)
     }
@@ -33,14 +43,21 @@ class Database constructor(_db: SQLiteDatabase?)  {
 
 
     fun deleteDate(currentDate: Calendar) {
-        val dateFormatter = SimpleDateFormat("dd.MM.yyyy")
+
         val dateString = dateFormatter.format(currentDate.time)
 
         val sqlstring = "DELETE FROM measures WHERE date = '"+dateString+"';"
 
         db?.execSQL(sqlstring)
     }
+    fun deleteNote(weight: Int) {
 
+
+
+        val sqlstring = "DELETE FROM goals WHERE weight = "+weight+";"
+
+        db?.execSQL(sqlstring)
+    }
 
 
     fun insertDots() {
@@ -63,9 +80,6 @@ class Database constructor(_db: SQLiteDatabase?)  {
 
     fun getMeasures(context: Context?): List<Measure> {
 
-
-
-
         val query = db?.rawQuery("SELECT * FROM measures;", null)
 
         val Measures = ArrayList<Measure>()
@@ -77,7 +91,7 @@ class Database constructor(_db: SQLiteDatabase?)  {
 
 
 
-            val dateFormatter = SimpleDateFormat("dd.MM.yyyy")
+          //  val dateFormatter = SimpleDateFormat("dd.MM.yyyy")
             val date = dateFormatter.parse(dateString)
 
             Measures.add(Measure(date, weight))
@@ -88,6 +102,33 @@ class Database constructor(_db: SQLiteDatabase?)  {
 
 
         return sortedMeasures
+    }
+
+
+
+
+    fun getGoals(context: Context?): List<Goal> {
+
+        val query = db?.rawQuery("SELECT * FROM goals;", null)
+
+        val Goals = ArrayList<Goal>()
+
+        while (query?.moveToNext()==true) {
+            val weight = query.getInt(1)
+            val note = query.getString(2)
+
+
+
+
+
+            Goals.add(Goal( weight,note))
+        }
+
+
+        var sortedGoals =Goals.sortedWith(compareBy({ it.weight }))
+
+
+        return sortedGoals
     }
 
 }

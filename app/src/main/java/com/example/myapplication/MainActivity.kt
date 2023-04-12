@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_history, R.id.navigation_graph
+                R.id.navigation_home, R.id.navigation_history, R.id.navigation_graph, R.id.navigation_notes
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -59,20 +59,28 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val arguments = getIntent().getExtras();
+        val arguments = getIntent().getExtras()
 
 
         if(arguments!=null) {
-            val navController = findNavController(R.id.nav_host_fragment_activity_main)
-            val graph = navController.navInflater.inflate(R.navigation.mobile_navigation)
-            graph.setStartDestination(R.id.navigation_history);
-            navController.setGraph(graph,null)
+            val t=arguments.getInt("name")
+            if(t==1) {
+                val navController = findNavController(R.id.nav_host_fragment_activity_main)
+                val graph = navController.navInflater.inflate(R.navigation.mobile_navigation)
+                graph.setStartDestination(R.id.navigation_history);
+                navController.setGraph(graph, null)
+            }else{
+                val navController = findNavController(R.id.nav_host_fragment_activity_main)
+                val graph = navController.navInflater.inflate(R.navigation.mobile_navigation)
+                graph.setStartDestination(R.id.navigation_notes);
+                navController.setGraph(graph, null)
+            }
 
         }
 
         val db = baseContext.openOrCreateDatabase("app.db", MODE_PRIVATE, null)
         val datab= Database(db)
-        datab.createDB(this,"measures")
+        datab.createTables(this)
 
             // datab.insertDots()
 
@@ -102,6 +110,11 @@ class MainActivity : AppCompatActivity() {
 
         startActivity(intent)
 
+       // val db = baseContext.openOrCreateDatabase("app.db", MODE_PRIVATE, null)
+      //  val datab= Database(db)
+       // datab.insertGoal(75,"2 года назад")
+       // datab.insertGoal(70,"нормально")
+
 
     }
 
@@ -109,6 +122,14 @@ class MainActivity : AppCompatActivity() {
     fun onClickAdd(view: View?){
 
         val intent = Intent(this, Add_measure::class.java)
+        startActivity(intent)
+
+    }
+
+
+    fun onClickAddNote(view: View?){
+
+        val intent = Intent(this, Add_note::class.java)
         startActivity(intent)
 
     }
